@@ -1,0 +1,699 @@
+---
+layout: default
+---
+
+{% include lang.html %}
+
+{% assign featured_posts = '' | split: '' %}
+{% assign featured_categories = '' | split: '' %}
+{% assign category_total = site.data.home_categories | size %}
+{% for post in site.posts %}
+  {% assign primary_category = post.categories | first %}
+  {% if post.hidden != true and post.image and featured_posts.size < category_total %}
+    {% if primary_category %}
+      {% unless featured_categories contains primary_category %}
+        {% assign featured_posts = featured_posts | push: post %}
+        {% assign featured_categories = featured_categories | push: primary_category %}
+      {% endunless %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{% assign slide_total = category_total %}
+
+<style>
+  #main-wrapper main:has(.home-shell) {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  #main-wrapper main:has(.home-shell) + #panel-wrapper {
+    display: none;
+  }
+
+  .home-shell {
+    display: grid;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1080px;
+    margin-inline: auto;
+    padding: 0.35rem 0 1.5rem;
+  }
+
+  .home-section-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .home-section-heading h2,
+  .home-section-heading p {
+    margin: 0;
+  }
+
+  .home-section-heading h2 {
+    font-size: clamp(1.35rem, 2vw, 1.8rem);
+    font-weight: 700;
+    color: var(--bs-body-color);
+  }
+
+  .home-section-heading p {
+    max-width: 36rem;
+    color: var(--text-muted-color, rgba(127, 127, 127, 0.9));
+    font-size: 0.98rem;
+    line-height: 1.6;
+  }
+
+  .home-section-heading--compact {
+    justify-content: start;
+  }
+
+  .home-carousel {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.6rem;
+    background: var(--bs-body-bg);
+    border: 1px solid rgba(127, 127, 127, 0.16);
+    box-shadow: 0 28px 60px rgba(15, 23, 42, 0.08);
+    min-height: 360px;
+    isolation: isolate;
+  }
+
+  .home-carousel__slide {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      opacity 0.45s ease,
+      transform 0.45s ease;
+    transform: scale(1.02);
+  }
+
+  .home-carousel__slide.is-active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+  }
+
+  .home-carousel__media,
+  .home-carousel__fallback {
+    position: absolute;
+    inset: 0;
+  }
+
+  .home-carousel__media {
+    background-position: center;
+    background-size: cover;
+    transform: scale(1.02);
+  }
+
+  .home-carousel__fallback {
+    background:
+      radial-gradient(circle at top left, rgba(255, 255, 255, 0.28), transparent 38%),
+      linear-gradient(135deg, var(--slide-accent), rgba(15, 23, 42, 0.9));
+  }
+
+  .home-carousel__overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(115deg, rgba(15, 23, 42, 0.86), rgba(15, 23, 42, 0.18) 58%, rgba(15, 23, 42, 0.08)),
+      linear-gradient(180deg, rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.66));
+  }
+
+  .home-carousel__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    gap: 0.9rem;
+    min-height: 360px;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    color: #fff;
+  }
+
+  .home-carousel__meta,
+  .home-category-card__meta,
+  .home-category-card__list a {
+    font-size: 0.92rem;
+  }
+
+  .home-carousel__meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+    color: rgba(255, 255, 255, 0.82);
+    letter-spacing: 0.01em;
+  }
+
+  .home-carousel__badge {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: 0.32rem 0.75rem;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(10px);
+    font-weight: 600;
+  }
+
+  .home-carousel__title {
+    margin: 0;
+    max-width: 32rem;
+    font-size: clamp(1.8rem, 4.2vw, 3rem);
+    font-weight: 800;
+    line-height: 1.1;
+  }
+
+  .home-carousel__excerpt {
+    margin: 0;
+    max-width: 34rem;
+    color: rgba(255, 255, 255, 0.84);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .home-carousel__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    width: fit-content;
+    margin-top: 0.2rem;
+    padding: 0.8rem 1rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    transition:
+      background 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .home-carousel__link:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.18);
+    transform: translateY(-1px);
+  }
+
+  .home-carousel__control {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.45);
+    color: #fff;
+    transform: translateY(-50%);
+    backdrop-filter: blur(10px);
+    transition:
+      background 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .home-carousel__control:hover {
+    background: rgba(15, 23, 42, 0.62);
+    transform: translateY(-50%) scale(1.03);
+  }
+
+  .home-carousel__control--prev {
+    left: 1rem;
+  }
+
+  .home-carousel__control--next {
+    right: 1rem;
+  }
+
+  .home-carousel__indicators {
+    position: absolute;
+    right: 1.2rem;
+    bottom: 1.2rem;
+    z-index: 2;
+    display: flex;
+    gap: 0.45rem;
+  }
+
+  .home-carousel__indicator {
+    width: 0.75rem;
+    height: 0.75rem;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.32);
+    transition:
+      width 0.2s ease,
+      background 0.2s ease;
+  }
+
+  .home-carousel__indicator.is-active {
+    width: 2rem;
+    background: #fff;
+  }
+
+  .home-category-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-category-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-height: 100%;
+    padding: 1.35rem;
+    border-radius: 1.35rem;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 56%),
+      var(--bs-body-bg);
+    border: 1px solid rgba(127, 127, 127, 0.16);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.05);
+    overflow: hidden;
+  }
+
+  .home-category-card::after {
+    content: "";
+    position: absolute;
+    inset: auto -3rem -4rem auto;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--category-accent) 26%, transparent);
+    filter: blur(4px);
+    opacity: 0.9;
+    pointer-events: none;
+  }
+
+  .home-category-card__header {
+    display: flex;
+    align-items: start;
+    gap: 0.9rem;
+  }
+
+  .home-category-card__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 1rem;
+    background: color-mix(in srgb, var(--category-accent) 16%, transparent);
+    color: var(--category-accent);
+    font-size: 1.05rem;
+  }
+
+  .home-category-card__eyebrow {
+    margin: 0 0 0.2rem;
+    color: var(--text-muted-color, rgba(127, 127, 127, 0.9));
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .home-category-card__title {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--bs-body-color);
+  }
+
+  .home-category-card__count {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.2rem;
+    height: 2.2rem;
+    padding: 0 0.75rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--category-accent) 14%, transparent);
+    color: var(--category-accent);
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+
+  .home-category-card__description {
+    margin: 0;
+    color: var(--text-muted-color, rgba(127, 127, 127, 0.9));
+    line-height: 1.65;
+  }
+
+  .home-category-card__lead {
+    display: grid;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: color-mix(in srgb, var(--category-accent) 8%, transparent);
+    text-decoration: none;
+    border: 1px solid color-mix(in srgb, var(--category-accent) 14%, transparent);
+  }
+
+  .home-category-card__lead:hover {
+    text-decoration: none;
+  }
+
+  .home-category-card__lead strong {
+    color: var(--bs-body-color);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .home-category-card__lead p {
+    margin: 0;
+    color: var(--text-muted-color, rgba(127, 127, 127, 0.9));
+    line-height: 1.6;
+  }
+
+  .home-category-card__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+    color: var(--text-muted-color, rgba(127, 127, 127, 0.9));
+  }
+
+  .home-category-card__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  .home-category-card__list li {
+    padding-top: 0.7rem;
+    border-top: 1px solid rgba(127, 127, 127, 0.14);
+  }
+
+  .home-category-card__list a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    text-decoration: none;
+    color: var(--bs-body-color);
+    line-height: 1.55;
+  }
+
+  .home-category-card__list span:first-child {
+    flex: 1;
+  }
+
+  .home-category-card__empty {
+    margin-top: auto;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px dashed color-mix(in srgb, var(--category-accent) 25%, rgba(127, 127, 127, 0.2));
+    color: var(--text-muted-color, rgba(127, 127, 127, 0.9));
+    line-height: 1.65;
+  }
+
+  @media (max-width: 991.98px) {
+    .home-category-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    .home-shell {
+      gap: 1.6rem;
+    }
+
+    .home-section-heading {
+      flex-direction: column;
+      align-items: start;
+    }
+
+    .home-carousel,
+    .home-carousel__content {
+      min-height: 320px;
+    }
+
+    .home-carousel__control {
+      width: 2.6rem;
+      height: 2.6rem;
+    }
+
+    .home-carousel__control--prev {
+      left: 0.75rem;
+    }
+
+    .home-carousel__control--next {
+      right: 0.75rem;
+    }
+
+    .home-carousel__indicators {
+      right: 0.85rem;
+      bottom: 0.85rem;
+    }
+  }
+</style>
+
+<div class="home-shell">
+  <section aria-labelledby="home-hero-heading">
+    <div class="home-section-heading home-section-heading--compact">
+      <div>
+        <h2 id="home-hero-heading">Featured Log</h2>
+      </div>
+    </div>
+
+    <div class="home-carousel" data-carousel {% if slide_total > 1 %}data-autoplay="true"{% endif %}>
+      {% for post in featured_posts %}
+        {% assign slide_image = post.image.path | default: post.image %}
+        {% capture slide_image_url %}{% include media-url.html src=slide_image subpath=post.media_subpath %}{% endcapture %}
+        {% assign summary = post.description | default: post.excerpt | strip_html | strip_newlines | truncate: 150 %}
+
+        <article class="home-carousel__slide{% if forloop.first %} is-active{% endif %}" data-carousel-slide aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}">
+          <div
+            class="home-carousel__media"
+            style="background-image: url('{{ slide_image_url | strip | escape }}');"
+          ></div>
+          <div class="home-carousel__overlay"></div>
+
+          <div class="home-carousel__content">
+            <div class="home-carousel__meta">
+              {% if post.categories.size > 0 %}
+                <span class="home-carousel__badge">{{ post.categories | first }}</span>
+              {% endif %}
+              {% include datetime.html date=post.date lang=lang %}
+            </div>
+
+            <h3 class="home-carousel__title">{{ post.title }}</h3>
+            <p class="home-carousel__excerpt">{{ summary }}</p>
+            <a href="{{ post.url | relative_url }}" class="home-carousel__link">
+              글 보러 가기
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </article>
+      {% endfor %}
+
+      {% for category in site.data.home_categories %}
+        {% unless featured_categories contains category.match %}
+          <article
+            class="home-carousel__slide{% if featured_posts.size == 0 and forloop.first %} is-active{% endif %}"
+            data-carousel-slide
+            aria-hidden="{% if featured_posts.size == 0 and forloop.first %}false{% else %}true{% endif %}"
+            style="--slide-accent: {{ category.accent }};"
+          >
+            <div class="home-carousel__fallback"></div>
+            <div class="home-carousel__overlay"></div>
+
+            <div class="home-carousel__content">
+              <div class="home-carousel__meta">
+                <span class="home-carousel__badge">{{ category.name }}</span>
+              </div>
+
+              <h3 class="home-carousel__title">{{ category.name }}</h3>
+              <p class="home-carousel__excerpt">{{ category.description }}</p>
+            </div>
+          </article>
+        {% endunless %}
+      {% endfor %}
+
+      {% if slide_total > 1 %}
+        <button class="home-carousel__control home-carousel__control--prev" type="button" aria-label="이전 슬라이드" data-carousel-prev>
+          <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <button class="home-carousel__control home-carousel__control--next" type="button" aria-label="다음 슬라이드" data-carousel-next>
+          <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <div class="home-carousel__indicators" aria-label="슬라이드 인디케이터">
+          {% for _item in (1..slide_total) %}
+            <button
+              class="home-carousel__indicator{% if forloop.first %} is-active{% endif %}"
+              type="button"
+              aria-label="슬라이드 {{ forloop.index }}"
+              data-carousel-indicator
+              data-carousel-index="{{ forloop.index0 }}"
+            ></button>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </section>
+
+  <section aria-labelledby="home-categories-heading">
+    <div class="home-section-heading home-section-heading--compact">
+      <div>
+        <h2 id="home-categories-heading">Category Log</h2>
+      </div>
+    </div>
+
+    <div class="home-category-grid">
+      {% for category in site.data.home_categories %}
+        {% assign category_posts = '' | split: '' %}
+        {% for post in site.posts %}
+          {% if post.hidden != true and post.categories contains category.match %}
+            {% assign category_posts = category_posts | push: post %}
+          {% endif %}
+        {% endfor %}
+
+        <article class="home-category-card" style="--category-accent: {{ category.accent }};">
+          <div class="home-category-card__header">
+            <span class="home-category-card__icon">
+              <i class="{{ category.icon }}"></i>
+            </span>
+
+            <div>
+              <p class="home-category-card__eyebrow">Category</p>
+              <h3 class="home-category-card__title">{{ category.name }}</h3>
+            </div>
+
+            <span class="home-category-card__count">{{ category_posts | size }}</span>
+          </div>
+
+          <p class="home-category-card__description">{{ category.description }}</p>
+
+          {% if category_posts.size > 0 %}
+            {% assign lead_post = category_posts | first %}
+            {% assign lead_summary = lead_post.description | default: lead_post.excerpt | strip_html | strip_newlines | truncate: 110 %}
+
+            <a href="{{ lead_post.url | relative_url }}" class="home-category-card__lead">
+              <strong>{{ lead_post.title }}</strong>
+              <p>{{ lead_summary }}</p>
+              <div class="home-category-card__meta">
+                {% include datetime.html date=lead_post.date lang=lang %}
+                {% if lead_post.tags.size > 0 %}
+                  <span>#{{ lead_post.tags | first }}</span>
+                {% endif %}
+              </div>
+            </a>
+
+            {% if category_posts.size > 1 %}
+              <ul class="home-category-card__list">
+                {% for post in category_posts offset: 1 limit: 2 %}
+                  <li>
+                    <a href="{{ post.url | relative_url }}">
+                      <span>{{ post.title }}</span>
+                      {% include datetime.html date=post.date lang=lang %}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          {% else %}
+            <div class="home-category-card__empty">
+              이 카테고리의 글이 아직 없습니다.
+            </div>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+</div>
+
+<script>
+  (() => {
+    const carousels = document.querySelectorAll("[data-carousel]");
+
+    carousels.forEach((carousel) => {
+      const slides = Array.from(carousel.querySelectorAll("[data-carousel-slide]"));
+      const indicators = Array.from(carousel.querySelectorAll("[data-carousel-indicator]"));
+      const prevButton = carousel.querySelector("[data-carousel-prev]");
+      const nextButton = carousel.querySelector("[data-carousel-next]");
+      const autoplay = carousel.dataset.autoplay === "true";
+
+      if (slides.length <= 1) {
+        return;
+      }
+
+      let activeIndex = slides.findIndex((slide) => slide.classList.contains("is-active"));
+      let timerId = null;
+
+      if (activeIndex < 0) {
+        activeIndex = 0;
+      }
+
+      const render = (nextIndex) => {
+        activeIndex = (nextIndex + slides.length) % slides.length;
+
+        slides.forEach((slide, index) => {
+          const isActive = index === activeIndex;
+          slide.classList.toggle("is-active", isActive);
+          slide.setAttribute("aria-hidden", String(!isActive));
+        });
+
+        indicators.forEach((indicator, index) => {
+          indicator.classList.toggle("is-active", index === activeIndex);
+        });
+      };
+
+      const startAutoplay = () => {
+        if (!autoplay) {
+          return;
+        }
+
+        stopAutoplay();
+        timerId = window.setInterval(() => render(activeIndex + 1), 5500);
+      };
+
+      const stopAutoplay = () => {
+        if (timerId !== null) {
+          window.clearInterval(timerId);
+          timerId = null;
+        }
+      };
+
+      prevButton?.addEventListener("click", () => {
+        render(activeIndex - 1);
+        startAutoplay();
+      });
+
+      nextButton?.addEventListener("click", () => {
+        render(activeIndex + 1);
+        startAutoplay();
+      });
+
+      indicators.forEach((indicator) => {
+        indicator.addEventListener("click", () => {
+          const nextIndex = Number(indicator.dataset.carouselIndex);
+          render(nextIndex);
+          startAutoplay();
+        });
+      });
+
+      carousel.addEventListener("mouseenter", stopAutoplay);
+      carousel.addEventListener("mouseleave", startAutoplay);
+      carousel.addEventListener("focusin", stopAutoplay);
+      carousel.addEventListener("focusout", startAutoplay);
+
+      startAutoplay();
+    });
+  })();
+</script>

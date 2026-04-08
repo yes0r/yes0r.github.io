@@ -1,0 +1,35 @@
+- name: 개발
+  match: 개발
+  icon: fas fa-code
+  accent: "#2563eb"
+  description: 개발 기록, 구현 과정, 트러블슈팅을 모아두는 공간입니다.
+
+- name: CTF/Wargame
+  match: CTF/Wargame
+  icon: fas fa-flag
+  accent: "#059669"
+  description: 문제 풀이 과정과 실전에서 정리한 공격 흐름을 기록합니다.
+
+- name: BugbBounty
+  match: BugbBounty
+  icon: fas fa-bug
+  accent: "#dc2626"
+  description: 취약점 제보 경험, 리포트 작성, 재현 과정을 정리합니다.
+
+- name: 블로그/기술문서
+  match: 블로그/기술문서
+  icon: fas fa-book-open
+  accent: "#7c3aed"
+  description: 문서화 노하우, 기술 글 작성법, 아카이빙 메모를 담습니다.
+
+- name: 논문/컨퍼런스
+  match: 논문/컨퍼런스
+  icon: fas fa-microscope
+  accent: "#ea580c"
+  description: 논문 읽기, 세션 정리, 컨퍼런스 인사이트를 남깁니다.
+
+- name: 공모전/자격증
+  match: 공모전/자격증
+  icon: fas fa-award
+  accent: "#0f766e"
+  description: 준비 과정, 합격 기록, 대회 회고를 정리하는 공간입니다.
