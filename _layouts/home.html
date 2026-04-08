@@ -108,7 +108,8 @@ layout: default
   .home-carousel__media {
     background-position: center;
     background-size: cover;
-    transform: scale(1.02);
+    transform: scale(1.08);
+    filter: blur(7px) saturate(0.92);
   }
 
   .home-carousel__fallback {
@@ -123,6 +124,18 @@ layout: default
     background:
       linear-gradient(115deg, rgba(15, 23, 42, 0.86), rgba(15, 23, 42, 0.18) 58%, rgba(15, 23, 42, 0.08)),
       linear-gradient(180deg, rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.66));
+  }
+
+  .home-carousel__slide--image .home-carousel__overlay {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(15, 23, 42, 0.88) 0%,
+        rgba(15, 23, 42, 0.72) 28%,
+        rgba(15, 23, 42, 0.44) 58%,
+        rgba(15, 23, 42, 0.3) 100%
+      ),
+      linear-gradient(180deg, rgba(15, 23, 42, 0.12) 0%, rgba(15, 23, 42, 0.38) 52%, rgba(15, 23, 42, 0.82) 100%);
   }
 
   .home-carousel__content {
@@ -171,6 +184,10 @@ layout: default
     line-height: 1.1;
   }
 
+  .home-carousel__slide--image .home-carousel__title {
+    color: #fff;
+  }
+
   .home-carousel__excerpt {
     margin: 0;
     max-width: 34rem;
@@ -195,6 +212,19 @@ layout: default
     transition:
       background 0.2s ease,
       transform 0.2s ease;
+  }
+
+  .home-carousel__slide--image .home-carousel__link {
+    background: linear-gradient(135deg, rgba(7, 16, 34, 0.78), rgba(18, 45, 96, 0.68));
+    border-color: rgba(120, 156, 230, 0.18);
+    color: #fff;
+    box-shadow: 0 14px 32px rgba(8, 20, 44, 0.28);
+    backdrop-filter: blur(10px);
+  }
+
+  .home-carousel__slide--image .home-carousel__link:hover {
+    background: linear-gradient(135deg, rgba(9, 20, 42, 0.86), rgba(24, 58, 120, 0.76));
+    color: #fff;
   }
 
   .home-carousel__link:hover {
@@ -476,7 +506,7 @@ layout: default
         {% capture slide_image_url %}{% include media-url.html src=slide_image subpath=post.media_subpath %}{% endcapture %}
         {% assign summary = post.description | default: post.excerpt | strip_html | strip_newlines | truncate: 150 %}
 
-        <article class="home-carousel__slide{% if forloop.first %} is-active{% endif %}" data-carousel-slide aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}">
+        <article class="home-carousel__slide home-carousel__slide--image{% if forloop.first %} is-active{% endif %}" data-carousel-slide aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}">
           <div
             class="home-carousel__media"
             style="background-image: url('{{ slide_image_url | strip | escape }}');"
