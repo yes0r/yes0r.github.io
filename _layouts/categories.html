@@ -18,13 +18,13 @@ layout: page
     display: grid;
     gap: 1.75rem;
     width: 100%;
-    max-width: 1080px;
+    max-width: 1180px;
     margin-inline: auto;
   }
 
   .categories-page__nav {
     display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
     gap: 0.9rem;
     padding-bottom: 0.9rem;
     border-bottom: 1px solid rgba(127, 127, 127, 0.16);
@@ -32,16 +32,26 @@ layout: page
 
   .categories-page__nav-item {
     display: block;
+    width: 100%;
     padding: 0 0 0.65rem;
     border-bottom: 2px solid rgba(127, 127, 127, 0.18);
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    background: transparent;
     text-decoration: none;
     text-align: center;
     transition: opacity 0.2s ease;
   }
 
-  .categories-page__nav-item:hover {
+  .categories-page__nav-item:hover,
+  .categories-page__nav-item.is-active {
     opacity: 0.72;
     text-decoration: none;
+  }
+
+  .categories-page__nav-item.is-active {
+    border-bottom-color: var(--category-accent, var(--bs-primary));
   }
 
   .categories-page__nav-label {
@@ -195,6 +205,32 @@ layout: page
     font-size: 0.92rem;
   }
 
+  .categories-page__section-more {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    width: fit-content;
+    margin-top: auto;
+    padding: 0.55rem 0.8rem;
+    border: 0;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--category-accent) 10%, transparent);
+    color: var(--category-accent);
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .categories-page__section-more:hover {
+    background: color-mix(in srgb, var(--category-accent) 16%, transparent);
+  }
+
+  .categories-page.is-filtered .categories-page__section-more {
+    display: none;
+  }
+
   .categories-page__empty {
     position: relative;
     z-index: 1;
@@ -203,6 +239,40 @@ layout: page
     border: 1px dashed color-mix(in srgb, var(--category-accent) 25%, rgba(127, 127, 127, 0.2));
     color: var(--text-muted-color, rgba(127, 127, 127, 0.9));
     line-height: 1.65;
+  }
+
+  .categories-page__section.is-hidden {
+    display: none;
+  }
+
+  .categories-page.is-filtered .categories-page__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .categories-page.is-filtered .categories-page__section {
+    padding: 1.15rem;
+  }
+
+  .categories-page.is-filtered .categories-page__section-description {
+    max-width: 42rem;
+  }
+
+  .categories-page.is-filtered .categories-page__post-list {
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    align-items: stretch;
+  }
+
+  .categories-page.is-filtered .categories-page__post-item {
+    min-height: 100%;
+  }
+
+  .categories-page.is-filtered .categories-page__post-item a {
+    height: 100%;
+    align-content: start;
+  }
+
+  .categories-page:not(.is-filtered) .categories-page__post-item:nth-child(n + 4) {
+    display: none;
   }
 
   @media (max-width: 991.98px) {
@@ -224,6 +294,17 @@ layout: page
 
 <div class="categories-page">
   <nav class="categories-page__nav" aria-label="카테고리 바로가기">
+    <button
+      class="categories-page__nav-item is-active"
+      type="button"
+      data-category-filter="all"
+      style="--category-accent: var(--bs-primary);"
+    >
+      <span class="categories-page__nav-label">
+        <span class="categories-page__nav-name">전체</span>
+      </span>
+    </button>
+
     {% for category in site.data.home_categories %}
       {% assign category_posts = '' | split: '' %}
       {% for post in site.posts %}
@@ -232,14 +313,16 @@ layout: page
         {% endif %}
       {% endfor %}
 
-      <a
-        href="#category-{{ forloop.index }}"
+      <button
         class="categories-page__nav-item"
+        type="button"
+        data-category-filter="{{ forloop.index }}"
+        style="--category-accent: {{ category.accent }};"
       >
         <span class="categories-page__nav-label">
           <span class="categories-page__nav-name">{{ category.name }}</span>
         </span>
-      </a>
+      </button>
     {% endfor %}
   </nav>
 
@@ -255,6 +338,7 @@ layout: page
       <article
         id="category-{{ forloop.index }}"
         class="categories-page__section"
+        data-category-section="{{ forloop.index }}"
         style="--category-accent: {{ category.accent }};"
       >
         <div class="categories-page__section-header">
@@ -274,7 +358,7 @@ layout: page
 
         {% if category_posts.size > 0 %}
           <ul class="categories-page__post-list">
-            {% for post in category_posts limit: 5 %}
+            {% for post in category_posts %}
               {% assign summary = post.description | default: post.excerpt | strip_html | strip_newlines | truncate: 110 %}
 
               <li class="categories-page__post-item">
@@ -291,6 +375,17 @@ layout: page
               </li>
             {% endfor %}
           </ul>
+
+          {% if category_posts.size > 3 %}
+            <button
+              class="categories-page__section-more"
+              type="button"
+              data-category-filter="{{ forloop.index }}"
+            >
+              전체 보기
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          {% endif %}
         {% else %}
           <div class="categories-page__empty">이 카테고리의 글이 아직 없습니다.</div>
         {% endif %}
@@ -298,3 +393,48 @@ layout: page
     {% endfor %}
   </section>
 </div>
+
+<script>
+  (() => {
+    const page = document.querySelector(".categories-page");
+    const filters = Array.from(document.querySelectorAll("[data-category-filter]"));
+    const sections = Array.from(document.querySelectorAll("[data-category-section]"));
+    const params = new URLSearchParams(window.location.search);
+    const initialFilter = params.get("category") || "all";
+
+    const applyFilter = (value, updateUrl = true) => {
+      const selected = value || "all";
+
+      sections.forEach((section) => {
+        const isVisible = selected === "all" || section.dataset.categorySection === selected;
+        section.classList.toggle("is-hidden", !isVisible);
+      });
+
+      page?.classList.toggle("is-filtered", selected !== "all");
+
+      filters.forEach((filter) => {
+        const isActive = filter.dataset.categoryFilter === selected;
+        filter.classList.toggle("is-active", isActive);
+        filter.setAttribute("aria-pressed", String(isActive));
+      });
+
+      if (updateUrl) {
+        const url = new URL(window.location.href);
+        if (selected === "all") {
+          url.searchParams.delete("category");
+        } else {
+          url.searchParams.set("category", selected);
+        }
+        window.history.replaceState({}, "", url);
+      }
+    };
+
+    filters.forEach((filter) => {
+      filter.addEventListener("click", () => {
+        applyFilter(filter.dataset.categoryFilter);
+      });
+    });
+
+    applyFilter(initialFilter, false);
+  })();
+</script>
