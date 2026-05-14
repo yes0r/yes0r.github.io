@@ -274,22 +274,22 @@ file ./maybehere07/.file2
 
 주요 옵션은 다음과 같다
 
-&lt;table style=&quot;border-collapse: collapse; width: 100%;&quot; border=&quot;1&quot; data-ke-align=&quot;alignLeft&quot;&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;-user&lt;/td&gt;
-&lt;td&gt;파일 소유자&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;-group&lt;/td&gt;
-&lt;td&gt;파일 그룹&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;-size&lt;/td&gt;
-&lt;td&gt;파일 크기&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+<table>
+  <tbody>
+    <tr>
+      <td>-user</td>
+      <td>파일 소유자</td>
+    </tr>
+    <tr>
+      <td>-group</td>
+      <td>파일 그룹</td>
+    </tr>
+    <tr>
+      <td>-size</td>
+      <td>파일 크기</td>
+    </tr>
+  </tbody>
+</table>
 
 
 
@@ -343,22 +343,22 @@ grep millionth data.txt
 
 각각의 의미는 다음과 같다.
 
-&lt;table style=&quot;border-collapse: collapse; width: 100%;&quot; border=&quot;1&quot; data-ke-align=&quot;alignLeft&quot;&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;grep&lt;/td&gt;
-&lt;td&gt;문자열 검색&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;millionth&lt;/td&gt;
-&lt;td&gt;찾을 단어&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;data.txt&lt;/td&gt;
-&lt;td&gt;검색 대상 파일&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+<table>
+  <tbody>
+    <tr>
+      <td>grep</td>
+      <td>문자열 검색</td>
+    </tr>
+    <tr>
+      <td>millionth</td>
+      <td>찾을 단어</td>
+    </tr>
+    <tr>
+      <td>data.txt</td>
+      <td>검색 대상 파일</td>
+    </tr>
+  </tbody>
+</table>
 
 
 
@@ -403,22 +403,22 @@ sort data.txt | uniq -u
 
 각각의 의미를 해석해보면 다음과 같다.
 
-&lt;table style=&quot;border-collapse: collapse; width: 100%; height: 65px;&quot; border=&quot;1&quot; data-ke-align=&quot;alignLeft&quot;&gt;
-&lt;tbody&gt;
-&lt;tr style=&quot;height: 19px;&quot;&gt;
-&lt;td style=&quot;height: 19px;&quot;&gt;sort data.txt&lt;/td&gt;
-&lt;td style=&quot;height: 19px;&quot;&gt;파일 내용 정렬&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr style=&quot;height: 17px;&quot;&gt;
-&lt;td style=&quot;height: 17px;&quot;&gt;|&lt;/td&gt;
-&lt;td style=&quot;height: 17px;&quot;&gt;명령어 결과를 다음 명령어로 전달&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr style=&quot;height: 19px;&quot;&gt;
-&lt;td style=&quot;height: 19px;&quot;&gt;uniq -u&lt;/td&gt;
-&lt;td style=&quot;height: 19px;&quot;&gt;한 번만 나온 줄 출력&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+<table>
+  <tbody>
+    <tr>
+      <td>sort data.txt</td>
+      <td>파일 내용 정렬</td>
+    </tr>
+    <tr>
+      <td>|</td>
+      <td>명령어 결과를 다음 명령어로 전달</td>
+    </tr>
+    <tr>
+      <td>uniq -u</td>
+      <td>한 번만 나온 줄 출력</td>
+    </tr>
+  </tbody>
+</table>
 
 
 
@@ -552,30 +552,30 @@ cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
 
 각각의 의미는 다음과 같다.
 
-&lt;table style=&quot;border-collapse: collapse; width: 100%;&quot; border=&quot;1&quot; data-ke-align=&quot;alignLeft&quot;&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;cat data.txt&lt;/td&gt;
-&lt;td&gt;data.txt 내용 출력&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;|&lt;/td&gt;
-&lt;td&gt;명령어의 결과를 뒤로 넘김&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;tr&lt;/td&gt;
-&lt;td&gt;문자 치환&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&#x27;A-Za-z&#x27;&lt;/td&gt;
-&lt;td&gt;대문자 A-Z, 소문자 a-z 전체&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&#x27;N-ZA-Mn-za-m&#x27;&lt;/td&gt;
-&lt;td&gt;13칸 밀린 알파벳 순서&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+<table>
+  <tbody>
+    <tr>
+      <td>cat data.txt</td>
+      <td>data.txt 내용 출력</td>
+    </tr>
+    <tr>
+      <td>|</td>
+      <td>명령어의 결과를 뒤로 넘김</td>
+    </tr>
+    <tr>
+      <td>tr</td>
+      <td>문자 치환</td>
+    </tr>
+    <tr>
+      <td>'A-Za-z'</td>
+      <td>대문자 A-Z, 소문자 a-z 전체</td>
+    </tr>
+    <tr>
+      <td>'N-ZA-Mn-za-m'</td>
+      <td>13칸 밀린 알파벳 순서</td>
+    </tr>
+  </tbody>
+</table>
 
 ![](/assets/img/posts/tistory/tistory-28-18.png)
 
@@ -740,26 +740,26 @@ nano ~/bandit14.key #nano는 터미널에서 쓰는 간단한 텍스트 편집�
 
 
 
-&lt;table style=&quot;border-collapse: collapse; width: 100%;&quot; border=&quot;1&quot; data-ke-align=&quot;alignLeft&quot;&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;nano&lt;/td&gt;
-&lt;td&gt;터미널에서 쓰는 간단한 텍스트 편집기&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;~&lt;/td&gt;
-&lt;td&gt;내 홈 디렉토리&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;/&lt;/td&gt;
-&lt;td&gt;경로 구분자&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;bandit14.key&lt;/td&gt;
-&lt;td&gt;만들거나 열 파일 이름&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+<table>
+  <tbody>
+    <tr>
+      <td>nano</td>
+      <td>터미널에서 쓰는 간단한 텍스트 편집기</td>
+    </tr>
+    <tr>
+      <td>~</td>
+      <td>내 홈 디렉토리</td>
+    </tr>
+    <tr>
+      <td>/</td>
+      <td>경로 구분자</td>
+    </tr>
+    <tr>
+      <td>bandit14.key</td>
+      <td>만들거나 열 파일 이름</td>
+    </tr>
+  </tbody>
+</table>
 
 
 
@@ -884,26 +884,26 @@ openssl s_client -connect localhost:30001
 
 각각의 의미를 해석해보면 다음과 같다.
 
-&lt;table style=&quot;border-collapse: collapse; width: 100%;&quot; border=&quot;1&quot; data-ke-align=&quot;alignLeft&quot;&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;openssl&lt;/td&gt;
-&lt;td&gt;SSL/TLS 관련 기능을 제공하는 명령어&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;s_client&lt;/td&gt;
-&lt;td&gt;SSL/TLS 서버에 클라이언트처럼 접속하는 기능&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;-connect&lt;/td&gt;
-&lt;td&gt;접속할 대상 서버와 포트를 지정&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;localhost:30001&lt;/td&gt;
-&lt;td&gt;현재 서버의 30001번 포트에 접속&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+<table>
+  <tbody>
+    <tr>
+      <td>openssl</td>
+      <td>SSL/TLS 관련 기능을 제공하는 명령어</td>
+    </tr>
+    <tr>
+      <td>s_client</td>
+      <td>SSL/TLS 서버에 클라이언트처럼 접속하는 기능</td>
+    </tr>
+    <tr>
+      <td>-connect</td>
+      <td>접속할 대상 서버와 포트를 지정</td>
+    </tr>
+    <tr>
+      <td>localhost:30001</td>
+      <td>현재 서버의 30001번 포트에 접속</td>
+    </tr>
+  </tbody>
+</table>
 
 
 
@@ -952,26 +952,26 @@ nmap -sV -p 31000-32000 localhost
 
 
 
-&lt;table style=&quot;border-collapse: collapse; width: 100%;&quot; border=&quot;1&quot; data-ke-align=&quot;alignLeft&quot;&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;nmap&lt;/td&gt;
-&lt;td&gt;포트 스캔 도구&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;-sV&lt;/td&gt;
-&lt;td&gt;열린 포트의 서비스 정보를 확인&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;-p 31000-32000&lt;/td&gt;
-&lt;td&gt;31000번부터 32000번까지 검사&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;localhost&lt;/td&gt;
-&lt;td&gt;현재 접속 중인 Bandit 서버 자기 자신&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+<table>
+  <tbody>
+    <tr>
+      <td>nmap</td>
+      <td>포트 스캔 도구</td>
+    </tr>
+    <tr>
+      <td>-sV</td>
+      <td>열린 포트의 서비스 정보를 확인</td>
+    </tr>
+    <tr>
+      <td>-p 31000-32000</td>
+      <td>31000번부터 32000번까지 검사</td>
+    </tr>
+    <tr>
+      <td>localhost</td>
+      <td>현재 접속 중인 Bandit 서버 자기 자신</td>
+    </tr>
+  </tbody>
+</table>
 
 
 
@@ -1049,22 +1049,22 @@ diff passwords.old passwords.new
 
 다음과 같이 사용하면 된다.
 
-&lt;table style=&quot;border-collapse: collapse; width: 100%;&quot; border=&quot;1&quot; data-ke-align=&quot;alignLeft&quot;&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;diff&lt;/td&gt;
-&lt;td&gt;두 파일의 차이점을 비교하는 명령어&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;passwords.old&lt;/td&gt;
-&lt;td&gt;비교 기준이 되는 이전 파일&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;passwords.new&lt;/td&gt;
-&lt;td&gt;변경된 내용이 들어 있는 새 파일&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+<table>
+  <tbody>
+    <tr>
+      <td>diff</td>
+      <td>두 파일의 차이점을 비교하는 명령어</td>
+    </tr>
+    <tr>
+      <td>passwords.old</td>
+      <td>비교 기준이 되는 이전 파일</td>
+    </tr>
+    <tr>
+      <td>passwords.new</td>
+      <td>변경된 내용이 들어 있는 새 파일</td>
+    </tr>
+  </tbody>
+</table>
 
 
 
@@ -1161,26 +1161,26 @@ Example: ./bandit20-do id라며 사용법이 출력되게 되는데, 이 사용�
 
 이런 명령어가 되고, 각각 해석해보면 다음과 같은 뜻을 가진다.
 
-&lt;table style=&quot;border-collapse: collapse; width: 100%;&quot; border=&quot;1&quot; data-ke-align=&quot;alignLeft&quot;&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;setuid&lt;/td&gt;
-&lt;td&gt;실행 파일을 파일 소유자의 권한으로 실행하게 하는 권한&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;ls -l&lt;/td&gt;
-&lt;td&gt;파일 권한과 소유자 정보를 자세히 확인&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;./파일명&lt;/td&gt;
-&lt;td&gt;현재 디렉토리의 실행 파일 실행&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;/etc/bandit_pass/bandit20&lt;/td&gt;
-&lt;td&gt;bandit20 비밀번호 파일 위치&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+<table>
+  <tbody>
+    <tr>
+      <td>setuid</td>
+      <td>실행 파일을 파일 소유자의 권한으로 실행하게 하는 권한</td>
+    </tr>
+    <tr>
+      <td>ls -l</td>
+      <td>파일 권한과 소유자 정보를 자세히 확인</td>
+    </tr>
+    <tr>
+      <td>./파일명</td>
+      <td>현재 디렉토리의 실행 파일 실행</td>
+    </tr>
+    <tr>
+      <td>/etc/bandit_pass/bandit20</td>
+      <td>bandit20 비밀번호 파일 위치</td>
+    </tr>
+  </tbody>
+</table>
 
 
 
@@ -1222,32 +1222,22 @@ echo "0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO" | nc -l -p 12345 &
 
 
 
-&lt;table style=&quot;border-collapse: collapse; width: 100%;&quot; border=&quot;1&quot; data-ke-align=&quot;alignLeft&quot;&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt; &lt;/td&gt;
-&lt;td&gt; &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;echo &quot;비밀번호&quot;&lt;/td&gt;
-&lt;td&gt;현재 비밀번호를 출력&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;nc -l -p 12345&lt;/td&gt;
-&lt;td&gt;12345번 포트에서 연결을 기다림&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&amp;&lt;/td&gt;
-&lt;td&gt;이 명령어를 백그라운드에서 실행&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt; &lt;/td&gt;
-&lt;td&gt; &lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+<table>
+  <tbody>
+    <tr>
+      <td>echo "비밀번호"</td>
+      <td>현재 비밀번호를 출력</td>
+    </tr>
+    <tr>
+      <td>nc -l -p 12345</td>
+      <td>12345번 포트에서 연결을 기다림</td>
+    </tr>
+    <tr>
+      <td>&amp;</td>
+      <td>이 명령어를 백그라운드에서 실행</td>
+    </tr>
+  </tbody>
+</table>
 
 
 
@@ -1393,30 +1383,30 @@ cat /usr/bin/cronjob_bandit23.sh
 
 
 
-&lt;table style=&quot;border-collapse: collapse; width: 100%;&quot; border=&quot;1&quot; data-ke-align=&quot;alignLeft&quot;&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;#!/bin/bash&lt;/td&gt;
-&lt;td&gt;이 파일이 bash 쉘로 실행되는 스크립트임을 의미한다.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;myname=$(whoami)&lt;/td&gt;
-&lt;td&gt;현재 스크립트를 실행하는 사용자 이름을 myname 변수에 저장한다. cron 설정에서 이 스크립트는 bandit23 권한으로 실행되므로, myname에는 bandit23이 들어간다.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;mytarget=$(echo I am user $myname | md5sum | cut -d &#x27; &#x27; -f 1)&lt;/td&gt;
-&lt;td&gt;I am user bandit23이라는 문자열을 만들고, 이를 MD5 해시값으로 변환한 뒤, 해시값 부분만 잘라 mytarget 변수에 저장한다.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;echo &quot;Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget&quot;&lt;/td&gt;
-&lt;td&gt;어떤 비밀번호 파일을 어디로 복사하는지 안내 메시지를 출력한다.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;cat /etc/bandit_pass/$myname &gt; /tmp/$mytarget&lt;/td&gt;
-&lt;td&gt;/etc/bandit_pass/bandit23 파일의 내용을 /tmp/해시값 파일로 저장한다. 즉, 이 파일 안에 다음 레벨 비밀번호가 들어 있다.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+<table>
+  <tbody>
+    <tr>
+      <td>#!/bin/bash</td>
+      <td>이 파일이 bash 쉘로 실행되는 스크립트임을 의미한다.</td>
+    </tr>
+    <tr>
+      <td>myname=$(whoami)</td>
+      <td>현재 스크립트를 실행하는 사용자 이름을 myname 변수에 저장한다. cron 설정에서 이 스크립트는 bandit23 권한으로 실행되므로, myname에는 bandit23이 들어간다.</td>
+    </tr>
+    <tr>
+      <td>mytarget=$(echo I am user $myname | md5sum | cut -d ' ' -f 1)</td>
+      <td>I am user bandit23이라는 문자열을 만들고, 이를 MD5 해시값으로 변환한 뒤, 해시값 부분만 잘라 mytarget 변수에 저장한다.</td>
+    </tr>
+    <tr>
+      <td>echo "Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget"</td>
+      <td>어떤 비밀번호 파일을 어디로 복사하는지 안내 메시지를 출력한다.</td>
+    </tr>
+    <tr>
+      <td>cat /etc/bandit_pass/$myname &gt; /tmp/$mytarget</td>
+      <td>/etc/bandit_pass/bandit23 파일의 내용을 /tmp/해시값 파일로 저장한다. 즉, 이 파일 안에 다음 레벨 비밀번호가 들어 있다.</td>
+    </tr>
+  </tbody>
+</table>
 
 
 
@@ -1440,30 +1430,30 @@ echo I am user bandit23 | md5sum | cut -d ' ' -f 1
 
 
 
-&lt;table style=&quot;border-collapse: collapse; width: 100%;&quot; border=&quot;1&quot; data-ke-align=&quot;alignLeft&quot;&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;echo I am user bandit23&lt;/td&gt;
-&lt;td&gt;해시 계산에 사용할 문자열 출력&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;md5sum&lt;/td&gt;
-&lt;td&gt;입력 문자열의 MD5 해시값 계산&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;cut -d &#x27; &#x27; -f 1&lt;/td&gt;
-&lt;td&gt;공백 기준으로 첫 번째 값, 즉 해시값만 추출&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;/tmp/해시값&lt;/td&gt;
-&lt;td&gt;cron 스크립트가 비밀번호를 저장하는 파일 경로&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;cat /tmp/해시값&lt;/td&gt;
-&lt;td&gt;해당 파일 내용을 출력&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+<table>
+  <tbody>
+    <tr>
+      <td>echo I am user bandit23</td>
+      <td>해시 계산에 사용할 문자열 출력</td>
+    </tr>
+    <tr>
+      <td>md5sum</td>
+      <td>입력 문자열의 MD5 해시값 계산</td>
+    </tr>
+    <tr>
+      <td>cut -d ' ' -f 1</td>
+      <td>공백 기준으로 첫 번째 값, 즉 해시값만 추출</td>
+    </tr>
+    <tr>
+      <td>/tmp/해시값</td>
+      <td>cron 스크립트가 비밀번호를 저장하는 파일 경로</td>
+    </tr>
+    <tr>
+      <td>cat /tmp/해시값</td>
+      <td>해당 파일 내용을 출력</td>
+    </tr>
+  </tbody>
+</table>
 
 
 
@@ -1534,38 +1524,38 @@ cat /usr/bin/cronjob_bandit24.sh
 
 
 
-&lt;table style=&quot;border-collapse: collapse; width: 100%;&quot; border=&quot;1&quot; data-ke-align=&quot;alignLeft&quot;&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;myname=$(whoami)&lt;/td&gt;
-&lt;td&gt;현재 스크립트를 실행하는 사용자 이름을 저장&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;cd /var/spool/&quot;$myname&quot;/foo&lt;/td&gt;
-&lt;td&gt;/var/spool/bandit24/foo 디렉토리로 이동&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;for i in * .*&lt;/td&gt;
-&lt;td&gt;디렉토리 안의 일반 파일과 숨김 파일을 순회&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;owner=&quot;$(stat --format &quot;%U&quot; ./$i)&quot;&lt;/td&gt;
-&lt;td&gt;각 파일의 소유자 확인&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;[ &quot;${owner}&quot; = &quot;bandit23&quot; ] &amp;&amp; [ -f &quot;$i&quot; ]&lt;/td&gt;
-&lt;td&gt;소유자가 bandit23이고 일반 파일인지 검사&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;timeout -s 9 60 &quot;./$i&quot;&lt;/td&gt;
-&lt;td&gt;조건을 만족하면 파일을 최대 60초 동안 실행&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;rm -rf &quot;./$i&quot;&lt;/td&gt;
-&lt;td&gt;실행 후 파일 삭제&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+<table>
+  <tbody>
+    <tr>
+      <td>myname=$(whoami)</td>
+      <td>현재 스크립트를 실행하는 사용자 이름을 저장</td>
+    </tr>
+    <tr>
+      <td>cd /var/spool/"$myname"/foo</td>
+      <td>/var/spool/bandit24/foo 디렉토리로 이동</td>
+    </tr>
+    <tr>
+      <td>for i in * .*</td>
+      <td>디렉토리 안의 일반 파일과 숨김 파일을 순회</td>
+    </tr>
+    <tr>
+      <td>owner="$(stat --format "%U" ./$i)"</td>
+      <td>각 파일의 소유자 확인</td>
+    </tr>
+    <tr>
+      <td>[ "${owner}" = "bandit23" ] &amp;&amp; [ -f "$i" ]</td>
+      <td>소유자가 bandit23이고 일반 파일인지 검사</td>
+    </tr>
+    <tr>
+      <td>timeout -s 9 60 "./$i"</td>
+      <td>조건을 만족하면 파일을 최대 60초 동안 실행</td>
+    </tr>
+    <tr>
+      <td>rm -rf "./$i"</td>
+      <td>실행 후 파일 삭제</td>
+    </tr>
+  </tbody>
+</table>
 
 
 
@@ -1724,38 +1714,38 @@ done | nc localhost 30002 > result.txt
 
 
 
-&lt;table style=&quot;border-collapse: collapse; width: 100%;&quot; border=&quot;1&quot; data-ke-align=&quot;alignLeft&quot;&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;#!/bin/bash&lt;/td&gt;
-&lt;td&gt;이 파일을 bash 쉘로 실행하겠다는 의미이다.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;PASSWORD=$(cat /etc/bandit_pass/bandit24)&lt;/td&gt;
-&lt;td&gt;현재 레벨인 bandit24의 비밀번호를 읽어 PASSWORD 변수에 저장한다.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;for pin in {0000..9999}&lt;/td&gt;
-&lt;td&gt;0000부터 9999까지의 모든 4자리 PIN을 하나씩 대입하며 반복한다.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;do ... done&lt;/td&gt;
-&lt;td&gt;반복문에서 실행할 명령어 범위를 나타낸다.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;echo &quot;$PASSWORD $pin&quot;&lt;/td&gt;
-&lt;td&gt;bandit24비밀번호 PIN 형태의 문자열을 출력한다.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;| nc localhost 30002&lt;/td&gt;
-&lt;td&gt;반복문에서 만들어진 입력값들을 localhost의 30002번 포트로 전송한다.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&gt; result.txt&lt;/td&gt;
-&lt;td&gt;서버에서 돌아오는 응답을 화면에 출력하지 않고 result.txt 파일에 저장한다.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+<table>
+  <tbody>
+    <tr>
+      <td>#!/bin/bash</td>
+      <td>이 파일을 bash 쉘로 실행하겠다는 의미이다.</td>
+    </tr>
+    <tr>
+      <td>PASSWORD=$(cat /etc/bandit_pass/bandit24)</td>
+      <td>현재 레벨인 bandit24의 비밀번호를 읽어 PASSWORD 변수에 저장한다.</td>
+    </tr>
+    <tr>
+      <td>for pin in {0000..9999}</td>
+      <td>0000부터 9999까지의 모든 4자리 PIN을 하나씩 대입하며 반복한다.</td>
+    </tr>
+    <tr>
+      <td>do ... done</td>
+      <td>반복문에서 실행할 명령어 범위를 나타낸다.</td>
+    </tr>
+    <tr>
+      <td>echo "$PASSWORD $pin"</td>
+      <td>bandit24비밀번호 PIN 형태의 문자열을 출력한다.</td>
+    </tr>
+    <tr>
+      <td>| nc localhost 30002</td>
+      <td>반복문에서 만들어진 입력값들을 localhost의 30002번 포트로 전송한다.</td>
+    </tr>
+    <tr>
+      <td>&gt; result.txt</td>
+      <td>서버에서 돌아오는 응답을 화면에 출력하지 않고 result.txt 파일에 저장한다.</td>
+    </tr>
+  </tbody>
+</table>
 
 
 
